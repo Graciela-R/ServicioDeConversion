@@ -1,0 +1,80 @@
+-- Database: pdfImagen
+
+-- DROP DATABASE IF EXISTS "pdfImagen";
+
+CREATE DATABASE "pdfImagen"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Bolivia.1252'
+    LC_CTYPE = 'Spanish_Bolivia.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+	select * from documentos
+	
+	drop table imagen
+	drop table documentos
+	
+	
+	create table Documento_pdf(
+		id serial primary key,
+		Titulo varchar(100),
+		Ruta_pdf varchar(100)
+	);
+	
+	create table Documento_img(
+	    id serial primary key,
+		Titulo varchar(100),
+		Ruta_img varchar(100),
+		foreign key(id) references Documento_pdf(id)
+	);
+	
+	create table Imagen(
+	   id serial primary key,
+		Titulo varchar(100),
+		Ruta varchar(100),
+		foreign key(id) references Documento_img(id)
+	);
+	
+	select * from documento_pdf
+	select * from documento_img
+	select * from imagen 
+	
+	drop table imagen
+	drop table Documento_img
+	drop table documento_pdf
+
+
+
+---------UNA CONSULTA PARA OPTIMIZAR ,MI BD DE MI MICROSERVICIO
+
+ select 
+   	a.titulo as Nombre_PDF, 
+	a.ruta_doc as RUTA_PDF, 
+	imagen.titulo as TITULO_IMG, 
+	imagen.ruta as RUTA_IMG
+   from documento a, imagen
+   where a.id = imagen.id_documento and 
+   a.id= 2
+   order by imagen.titulo
+
+PUEDO HACERLO EN PROCEDIMIENTOS ALMACENADOS
+PORQUE LE ESTY PASANDO LA ID
+
+===============================================
+-- Database: pdfAImagen
+
+create table documento(
+	id serial primary key,
+	titulo varchar(100),
+	ruta_doc varchar(100),
+	tipo varchar(100) not null default 'Archivo'
+);
+ create table imagen(
+ 	id serial primary key,
+	titulo varchar(100),
+	ruta varchar(100),
+	id_documento integer,
+	 foreign key(id_documento) references documento(id)
+ );

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  web:
+    image: imagenpdfaimagen
+    build: .
+    ports:
+      - "9003:9003"
+    volumes:
+      - .:/app
