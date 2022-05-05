@@ -4,7 +4,7 @@ const pdf = require('pdf-poppler')
 const{guardarImagen, guardarImagenes}= require('../../config/db')
 
 
-
+//node-poppler2
 const dir=`${__dirname}/../../pdfImageFolder`
 const absolutepath=path.join(path.resolve(dir))
 
