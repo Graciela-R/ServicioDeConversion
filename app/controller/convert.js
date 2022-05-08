@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require("fs");
 const { Poppler } = require("node-poppler");
 const{guardarImagen, guardarImagenes}= require('../../config/db')
+//const poppler = new Poppler("./usr/bin");
 
 
 //empezando con node poppler2
